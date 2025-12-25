@@ -26,7 +26,7 @@ def denom(n, pr):
 
 pr = sieve(10**9)
 
-n = 10 ** 9
+n = 10 ** 7
 cnt = 0
 while cnt < 5:
     n += 1
