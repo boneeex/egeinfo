@@ -1,21 +1,39 @@
-from math import *
-def f(a, b, m):
-    if a + b <= 60:
-        return m % 2 == 0
-    
-    if m == 0:
-        return False
-    
-    h = [f(a - 5, b, m - 1), f(a, b - 3, m - 1), f(floor(a / 2), b, m - 1), f(a, ceil(b / 2), m - 1)]
+from fnmatch import fnmatch
+from collections import defaultdict
+from math import prod
 
-    if m % 2 == 1:
-        return any(h)
-    return all(h)
+def sieve(n):
+    lst = [*range(2, n + 1)]
+    for sym in lst:
+        if sym == 0:
+            continue
+        for i in range(sym ** 2 - 2, len(lst), sym):
+            lst[i] = 0
+    return [i for i in lst if i]
 
-ans = []
-# В начальный момент в первой куче было сто тридцать  камней, во второй куче – S камней; 5 ≤ S ≤ 150.
-for s in range(5, 151):
-    if f(130, s, 1) == False and f(130, s, 3) == False and f(130, s, 5) == True:
-        ans.append(s)
+def denom(n, pr):
+    ans = defaultdict(int)
+    den = 0
+    lst_of_prost = pr
+    while n != 1:
+        a = lst_of_prost[den]
+        if n % a == 0:
+            n //= a
+            ans[a] += 1
+        else:
+            den += 1
+    return ans
 
-print(prod(ans))
+pr = sieve(10**9)
+
+n = 10 ** 9
+cnt = 0
+while cnt < 5:
+    n += 1
+    if not fnmatch(str(n), "1*2*7*04"):
+        continue
+    a = denom(n, pr)
+    n1 = prod([i + 1 for i in list(a.values())])
+    if n1 == 45:
+        print(n, n // min(a.keys()))
+        cnt += 1
