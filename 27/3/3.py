@@ -1,5 +1,4 @@
 file = open(r"D:\informaticsclass\egeinfo\27\3\dz_27_11B.txt")
-
 lines = [list(map(float, line.replace(",", ".").split("\t"))) for line in file]
 
 def centroid(claster):
