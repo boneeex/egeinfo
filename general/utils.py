@@ -12,7 +12,7 @@
 #     for i in range(1, len(spl)):
 #         a = spl[i - 1]
 #         b = spl[i - 0]
-#         if a != b:
+#         elif a != b:
 #             mx = max(mx, cnt * d + cnt + 1)
 #             cnt = 0
 #             d = b
@@ -24,37 +24,67 @@
 #     mx = max(mx, find_max_sequence(value))
 # print(mx)
 
-file = open(r"D:\Study\egeinfo\24\24__3091 (1).txt")
+# file = open(r"D:\Study\egeinfo\24\24__3091 (1).txt")
 
-def check_palindrom(spl: list) -> bool:
-    lst = list(set([i for i in spl if spl.count(i) % 2]))
-    if len(lst) != 1: return False
-    ancestor = spl.copy()
-    # если символ, встречающийся нечетное кол-во раз, стоит посередине
-    if spl[3] == lst[0]:
-        for left_idx in range(3):
-            for right_idx in range(4, 7):
-                spl[left_idx], spl[right_idx] = spl[right_idx], spl[left_idx]
-                if spl[:3] == spl[4:][::-1]: 
+# def check_palindrom(spl: list) -> bool:
+#     lst = list(set([i for i in spl elif spl.count(i) % 2]))
+#     elif len(lst) != 1: return False
+#     ancestor = spl.copy()
+#     # если символ, встречающийся нечетное кол-во раз, стоит посередине
+#     elif spl[3] == lst[0]:
+#         for left_idx in range(3):
+#             for right_idx in range(4, 7):
+#                 spl[left_idx], spl[right_idx] = spl[right_idx], spl[left_idx]
+#                 elif spl[:3] == spl[4:][::-1]: 
 
-                    return True
-                else:
-                    spl = ancestor.copy()
-    # если символ, встречающийся нечетное кол-во раз, не стоит посередине
-    # то пытаемся его с кем то поменять
-    for i in range(len(spl)):
-        spl[i], spl[3] = spl[3], spl[i]
-        if spl[:3] == spl[4:][::-1]: 
-            return True
-        else:
-            spl = ancestor.copy()
-    return False
+#                     return True
+#                 else:
+#                     spl = ancestor.copy()
+#     # если символ, встречающийся нечетное кол-во раз, не стоит посередине
+#     # то пытаемся его с кем то поменять
+#     for i in range(len(spl)):
+#         spl[i], spl[3] = spl[3], spl[i]
+#         elif spl[:3] == spl[4:][::-1]: 
+#             return True
+#         else:
+#             spl = ancestor.copy()
+#     return False
 
-cnt = 0
-for line in file:
-    for i in range(7, len(line)):
-        if check_palindrom(list(line[i - 7:i])):
-            cnt += 1
-            break
+# cnt = 0
+# for line in file:
+#     for i in range(7, len(line)):
+#         elif check_palindrom(list(line[i - 7:i])):
+#             cnt += 1
+#             break
 
-print(cnt)
+# print(cnt)
+
+file = open(r"D:\Study\egeinfo\24\24_18284.txt").readline().strip()
+
+l = o = v = e = []
+mn = 10 ** 7
+for i in range(len(file)):
+    s = file[i]
+    if s == "L":
+        l.append(i)
+    elif s == "O":
+        o.append(i)
+    elif s == "V":
+        v.append(i)
+    elif s == "E":
+        e.append(i)
+
+for i in range(len(l)):
+    j = 0 
+    while o[j] <= l[i]:
+        j += 1
+    k = 0
+    while v[k] <= o[j]:
+        k += 1
+    z = 0
+    while e[z] <= v[k]:
+        z += 1
+    mn = min(mn, e[z] - l[i] + 1)
+
+print(mn)
+
