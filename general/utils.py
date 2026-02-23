@@ -59,32 +59,66 @@
 
 # print(cnt)
 
-file = open(r"D:\Study\egeinfo\24\24_18284.txt").readline().strip()
+# file = open(r"D:\Study\egeinfo\24\24_18284.txt").readline().strip()
 
-l = o = v = e = []
-mn = 10 ** 7
-for i in range(len(file)):
-    s = file[i]
-    if s == "L":
-        l.append(i)
-    elif s == "O":
-        o.append(i)
-    elif s == "V":
-        v.append(i)
-    elif s == "E":
-        e.append(i)
+# l = o = v = e = []
+# mn = 10 ** 7
+# for i in range(len(file)):
+#     s = file[i]
+#     if s == "L":
+#         l.append(i)
+#     elif s == "O":
+#         o.append(i)
+#     elif s == "V":
+#         v.append(i)
+#     elif s == "E":
+#         e.append(i)
 
-for i in range(len(l)):
-    j = 0 
-    while o[j] <= l[i]:
-        j += 1
-    k = 0
-    while v[k] <= o[j]:
-        k += 1
-    z = 0
-    while e[z] <= v[k]:
-        z += 1
-    mn = min(mn, e[z] - l[i] + 1)
+# for i in range(len(l)):
+#     j = 0 
+#     while o[j] <= l[i]:
+#         j += 1
+#     k = 0
+#     while v[k] <= o[j]:
+#         k += 1
+#     z = 0
+#     while e[z] <= v[k]:
+#         z += 1
+#     mn = min(mn, e[z] - l[i] + 1)
 
-print(mn)
+# print(mn)
 
+
+
+with open(r"D:\Study\egeinfo\24\24_18239.txt") as f:
+  text = f.read()
+
+while "--" in text:
+  text = text.replace("--", " -", 1)
+
+while "  " in text:
+  text = text.replace("  ", " ")
+
+text = text.split(" ")
+m = 0
+
+print(1)
+
+for st in text:
+  if len(st) > m:
+    st += '-'
+    a = [i for i in range(len(st)) if st[i] == '-']
+    for i in range(len(a)):
+      for j in range(i + 1, len(a)):
+        e = eval(st[a[i]:a[j]])
+        if e > -20_000:
+          m = max(m, len(st[a[i]:a[j]]))
+        else:
+          break
+    for i in range(len(a)):
+      for j in range(i + 1, len(a)):
+        e = eval(st[a[i] + 1:a[j]])
+        if e > -20_000:
+          m = max(m, len(st[a[i] + 1:a[j]]))
+        else:
+          break
