@@ -123,23 +123,30 @@
 #         else:
 #           break
 
-file = open(r"D:\informaticsclass\egeinfo\26\26_8616.txt")
-# 10000
-# 100
-dentists = [-1 for i in range(100)]
-clients = [list(map(int, line.split(" "))) for line in file]
-success = []
+# file = open(r"D:\informaticsclass\egeinfo\26\26_8616.txt")
+# # 10000
+# # 100
+# dentists = [-1 for i in range(100)]
+# clients = [list(map(int, line.split(" "))) for line in file]
+# success = []
 
-for client in clients:
-    time, id = client[0], client[1] - 1
-    if time > 810: continue
-    if dentists[id] < time:
-        dentists[id] = time + 30
-        success.append(id + 1)
-    else:
-        for i in range(len(dentists)):
-            if dentists[i] < time:
-                dentists[i] = time + 30
-                success.append(i + 1)
-                break
-print(len(success), success[-1])
+# for client in clients:
+#     time, id = client[0], client[1] - 1
+#     if time > 810: continue
+#     if dentists[id] < time:
+#         dentists[id] = time + 30
+#         success.append(id + 1)
+#     else:
+#         for i in range(len(dentists)):
+#             if dentists[i] < time:
+#                 dentists[i] = time + 30
+#                 success.append(i + 1)
+#                 break
+# print(len(success), success[-1])
+
+def pr_m(x, p = 2):
+    for d in range(p, int(x ** 0.5) + 1):
+        if x % d == 0:
+            return [d] + pr_m(x // d, d)
+    return [x]
+
