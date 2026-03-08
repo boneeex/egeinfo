@@ -144,9 +144,19 @@
 #                 break
 # print(len(success), success[-1])
 
-def pr_m(x, p = 2):
+def pr_m(x, p=2):
     for d in range(p, int(x ** 0.5) + 1):
         if x % d == 0:
             return [d] + pr_m(x // d, d)
     return [x]
 
+from itertools import *
+from math import prod
+def get_deviders(pr: list) -> list:
+    new_pr = []
+    for i in range(1, len(pr) + 1):
+        for var in permutations(pr, i):
+            new_pr.append(prod(list(var)))
+    return set(new_pr)
+
+print(sorted(get_deviders(pr_m(24))))
