@@ -144,19 +144,50 @@
 #                 break
 # print(len(success), success[-1])
 
-def pr_m(x, p=2):
-    for d in range(p, int(x ** 0.5) + 1):
-        if x % d == 0:
-            return [d] + pr_m(x // d, d)
-    return [x]
+# def pr_m(x, p=2):
+#     for d in range(p, int(x ** 0.5) + 1):
+#         if x % d == 0:
+#             return [d] + pr_m(x // d, d)
+#     return [x]
 
-from itertools import *
-from math import prod
-def get_deviders(pr: list) -> list:
-    new_pr = []
-    for i in range(1, len(pr) + 1):
-        for var in permutations(pr, i):
-            new_pr.append(prod(list(var)))
-    return set(new_pr)
+# from itertools import *
+# from math import prod
+# def get_deviders(pr: list) -> list:
+#     new_pr = []
+#     for i in range(1, len(pr) + 1):
+#         for var in permutations(pr, i):
+#             new_pr.append(prod(list(var)))
+#     return set(new_pr)
 
-print(sorted(get_deviders(pr_m(24))))
+# print(sorted(get_deviders(pr_m(24))))
+
+# file = open(r"D:\informaticsclass\egeinfo\24\24_9552.txt").readline()
+
+# lst = [0 for i in range(len(file))]
+# for i in range(len(file)):
+#     try:
+#         pc = file[i - 1:i + 1]
+#         csgo = file[i - 3:i + 1]
+#         if pc == "PC":
+#             lst[i] = 2 + lst[i - 2]
+#         if csgo == "CSGO":
+#             lst[i] = 4 + lst[i - 4]
+#     except:
+#         continue
+
+# print(max(lst))
+# print(lst[:1000])
+
+file = open(r"D:\informaticsclass\egeinfo\24\24_9552.txt").readline()
+from re import *
+
+pattern = "((CSGO)|(PC))+"
+pattern = f"(?=({pattern}))"
+
+mx = 0
+iss = []
+for i in finditer(pattern, file):
+    mx = max(mx, len(i.group(1)))
+    iss.append(i.group(1))
+print(mx)
+print(max(iss, key=len))
