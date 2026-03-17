@@ -178,16 +178,29 @@
 # print(max(lst))
 # print(lst[:1000])
 
-file = open(r"D:\informaticsclass\egeinfo\24\24_9552.txt").readline()
-from re import *
+# file = open(r"D:\informaticsclass\egeinfo\24\24_9552.txt").readline()
+# from re import *
 
-pattern = "((CSGO)|(PC))+"
-pattern = f"(?=({pattern}))"
+# pattern = "((CSGO)|(PC))+"
+# pattern = f"(?=({pattern}))"
 
-mx = 0
-iss = []
-for i in finditer(pattern, file):
-    mx = max(mx, len(i.group(1)))
-    iss.append(i.group(1))
-print(mx)
-print(max(iss, key=len))
+# mx = 0
+# iss = []
+# for i in finditer(pattern, file):
+#     mx = max(mx, len(i.group(1)))
+#     iss.append(i.group(1))
+# print(mx)
+# print(max(iss, key=len))
+
+from itertools import product
+
+alp = range(0, 10)
+
+for guys in product(alp, repeat=7):
+    for girls in product(alp, repeat=7):
+        n1 = [i for i in guys if guys.count(i) != 1]
+        n2 = [i for i in girls if girls.count(i) != 1]
+        if min(girls) < max(guys):
+            print(*guys)
+            print(*girls)
+            break
