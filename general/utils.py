@@ -192,15 +192,101 @@
 # print(mx)
 # print(max(iss, key=len))
 
-from itertools import product
+# from itertools import product
 
-alp = range(0, 10)
+# alp = range(0, 10)
 
-for guys in product(alp, repeat=7):
-    for girls in product(alp, repeat=7):
-        n1 = [i for i in guys if guys.count(i) != 1]
-        n2 = [i for i in girls if girls.count(i) != 1]
-        if min(girls) < max(guys):
-            print(*guys)
-            print(*girls)
-            break
+# for guys in product(alp, repeat=7):
+#     for girls in product(alp, repeat=7):
+#         n1 = [i for i in guys if guys.count(i) != 1]
+#         n2 = [i for i in girls if girls.count(i) != 1]
+#         if min(girls) < max(guys):
+#             print(*guys)
+#             print(*girls)
+#             break
+
+# file = open(r"D:\informaticsclass\egeinfo\26\26_8581.txt")
+# # 5000 – количество упаковок привезенной продукции
+# # 500 – количество холодильных камер
+# # 6000 - вместимость каждой из холодильных камер в кг
+# storage = [6000] * 500
+# packages = sorted([int(line) for line in file], reverse=True)
+
+# last = 0
+# left = 0
+# for idx, weight in enumerate(storage):
+#     curr_weight = weight
+#     while packages and curr_weight >= packages[0]:
+#         curr_weight -= packages[0]
+#         packages.pop(0)
+#     while packages and curr_weight >= packages[-1]:
+#         curr_weight -= packages[-1]
+#         packages.pop(-1) 
+#     if not packages:
+#         last = idx + 1
+#         left = curr_weight
+#         break
+# print(last, left)
+
+# from math import *
+# file = open(r"D:\informaticsclass\egeinfo\26\26_19599.txt")
+# # 5555
+# gladiators = sorted([list(map(int, line.split(" "))) for line in file], key=lambda x: x[0])
+# for i in range(len(gladiators)):
+#     if gladiators[i][1] == -1:
+#         continue
+#     if gladiators[gladiators[i][2] - 1][1] != -1:
+#         gladiators[gladiators[i][2] - 1][1] += gladiators[i][1]
+    
+#     for y in range(3, 6):
+#         if gladiators[gladiators[i][y] - 1][1] == -1:
+#             continue
+#         if gladiators[i][1] > gladiators[gladiators[i][y] - 1][1]:
+#             gladiators[i][1] = ceil(gladiators[i][1] * 2 / 3)
+#             gladiators[gladiators[i][y] - 1][1] = -1
+#         elif gladiators[i][1] < gladiators[gladiators[i][y] - 1][1]:
+#             gladiators[i][1] = -1
+#             gladiators[gladiators[i][y] - 1][1] = ceil(gladiators[gladiators[i][y] - 1][1] * 2 / 3)
+#             break
+#         elif gladiators[i][1] == gladiators[gladiators[i][y] - 1][1]:
+#             gladiators[i][1] = -1
+#             gladiators[gladiators[i][y] - 1][1] = -1
+#             break
+
+# res = [i[1] for i in gladiators if i[1] != -1]
+# print(len(gladiators) - len(res), max(res))
+
+file = open(r"D:\informaticsclass\egeinfo\26\26_8432.txt")
+# 888
+light_park = [[0 for i in range(1440)] for i in range(70)]
+heavy_park = [[0 for i in range(1440)] for i in range(30)]
+cars = sorted([[int(line.split(" ")[0]), int(line.split(" ")[1]), line.split(" ")[2].strip()] for line in file])
+
+micro = 0
+rejected = 0
+for idx, car in enumerate(cars):
+    start, duration, typec = car
+    flag = False
+    if typec == "A":
+        for i in range(len(light_park)):
+            if not sum(light_park[i][start:start + duration]):
+                light_park[i][start:start + duration] = [1] * duration
+                flag = True
+                break
+        if not flag:
+            for i in range(len(heavy_park)):
+                if not sum(heavy_park[i][start:start + duration]):
+                    heavy_park[i][start:start + duration] = [1] * duration
+                    flag = True
+                    break
+    if typec == "B":
+        for i in range(len(heavy_park)):
+            if not sum(heavy_park[i][start:start + duration]):
+                heavy_park[i][start:start + duration] = [1] * duration
+                flag = True
+                micro += 1
+                break
+    if flag == False:
+        rejected += 1
+
+print(micro, rejected)
