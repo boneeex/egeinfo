@@ -256,37 +256,77 @@
 # res = [i[1] for i in gladiators if i[1] != -1]
 # print(len(gladiators) - len(res), max(res))
 
-file = open(r"D:\informaticsclass\egeinfo\26\26_8432.txt")
-# 888
-light_park = [[0 for i in range(1440)] for i in range(70)]
-heavy_park = [[0 for i in range(1440)] for i in range(30)]
-cars = sorted([[int(line.split(" ")[0]), int(line.split(" ")[1]), line.split(" ")[2].strip()] for line in file])
+# file = open(r"D:\informaticsclass\egeinfo\26\26_8432.txt")
+# # 888
+# light_park = [[0 for i in range(1440)] for i in range(70)]
+# heavy_park = [[0 for i in range(1440)] for i in range(30)]
+# cars = sorted([[int(line.split(" ")[0]), int(line.split(" ")[1]), line.split(" ")[2].strip()] for line in file])
 
-micro = 0
-rejected = 0
-for idx, car in enumerate(cars):
-    start, duration, typec = car
-    flag = False
-    if typec == "A":
-        for i in range(len(light_park)):
-            if not sum(light_park[i][start:start + duration]):
-                light_park[i][start:start + duration] = [1] * duration
-                flag = True
-                break
-        if not flag:
-            for i in range(len(heavy_park)):
-                if not sum(heavy_park[i][start:start + duration]):
-                    heavy_park[i][start:start + duration] = [1] * duration
-                    flag = True
-                    break
-    if typec == "B":
-        for i in range(len(heavy_park)):
-            if not sum(heavy_park[i][start:start + duration]):
-                heavy_park[i][start:start + duration] = [1] * duration
-                flag = True
-                micro += 1
-                break
-    if flag == False:
-        rejected += 1
+# micro = 0
+# rejected = 0
+# for idx, car in enumerate(cars):
+#     start, duration, typec = car
+#     flag = False
+#     if typec == "A":
+#         for i in range(len(light_park)):
+#             if not sum(light_park[i][start:start + duration]):
+#                 light_park[i][start:start + duration] = [1] * duration
+#                 flag = True
+#                 break
+#         if not flag:
+#             for i in range(len(heavy_park)):
+#                 if not sum(heavy_park[i][start:start + duration]):
+#                     heavy_park[i][start:start + duration] = [1] * duration
+#                     flag = True
+#                     break
+#     if typec == "B":
+#         for i in range(len(heavy_park)):
+#             if not sum(heavy_park[i][start:start + duration]):
+#                 heavy_park[i][start:start + duration] = [1] * duration
+#                 flag = True
+#                 micro += 1
+#                 break
+#     if flag == False:
+#         rejected += 1
 
-print(micro, rejected)
+# print(micro, rejected)
+
+file = open(r"D:\Study\egeinfo\26\26_17643.txt")
+n = int(file.readline())
+lines = [list(map(int, line.split(" "))) for line in file]
+sr = sum([i[1] for i in lines]) / len(lines)
+dc = {}
+# key = art
+# value = [sum_price, released, instorage, poor_or_rich]
+
+for line in lines:
+    art, price, status = line
+    if price > sr:
+        if status == 1:
+            try:
+                dc[art][0] += 0
+                dc[art][1] += 1
+            except:
+                dc[art] = [price, 1, 0, True]
+        else:
+            try:
+                dc[art][0] += price
+                dc[art][2] += 1
+            except:
+                dc[art] = [price, 0, 1, True]
+    else:
+        if status == 1:
+            try:
+                dc[art][0] += 0
+                dc[art][1] += 1
+            except:
+                dc[art] = [price, 1, 0, False]
+        else:
+            try:
+                dc[art][0] += price
+                dc[art][2] += 1
+            except:
+                dc[art] = [price, 0, 1, False]
+
+dc = sorted(dc.items(), key=lambda x: [x[1], x[-1]])[::-1][:10]
+print(dc)
