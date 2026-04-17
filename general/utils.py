@@ -291,42 +291,121 @@
 
 # print(micro, rejected)
 
-file = open(r"D:\Study\egeinfo\26\26_17643.txt")
-n = int(file.readline())
-lines = [list(map(int, line.split(" "))) for line in file]
-sr = sum([i[1] for i in lines]) / len(lines)
-dc = {}
-# key = art
-# value = [sum_price, released, instorage, poor_or_rich]
+# file = open(r"D:\Study\egeinfo\26\26_17643.txt")
+# n = int(file.readline())
+# lines = [list(map(int, line.split(" "))) for line in file]
+# sr = sum([i[1] for i in lines]) / len(lines)
+# dc = {}
+# # key = art
+# # value = [sum_price, released, instorage, poor_or_rich]
 
-for line in lines:
-    art, price, status = line
-    if price > sr:
-        if status == 1:
-            try:
-                dc[art][0] += 0
-                dc[art][1] += 1
-            except:
-                dc[art] = [price, 1, 0, True]
-        else:
-            try:
-                dc[art][0] += price
-                dc[art][2] += 1
-            except:
-                dc[art] = [price, 0, 1, True]
-    else:
-        if status == 1:
-            try:
-                dc[art][0] += 0
-                dc[art][1] += 1
-            except:
-                dc[art] = [price, 1, 0, False]
-        else:
-            try:
-                dc[art][0] += price
-                dc[art][2] += 1
-            except:
-                dc[art] = [price, 0, 1, False]
+# for line in lines:
+#     art, price, status = line
+#     if price > sr:
+#         if status == 1:
+#             try:
+#                 dc[art][0] += 0
+#                 dc[art][1] += 1
+#             except:
+#                 dc[art] = [price, 1, 0, True]
+#         else:
+#             try:
+#                 dc[art][0] += price
+#                 dc[art][2] += 1
+#             except:
+#                 dc[art] = [price, 0, 1, True]
+#     else:
+#         if status == 1:
+#             try:
+#                 dc[art][0] += 0
+#                 dc[art][1] += 1
+#             except:
+#                 dc[art] = [price, 1, 0, False]
+#         else:
+#             try:
+#                 dc[art][0] += price
+#                 dc[art][2] += 1
+#             except:
+#                 dc[art] = [price, 0, 1, False]
 
-dc = sorted(dc.items(), key=lambda x: [x[1], x[-1]])[::-1][:10]
-print(dc)
+# dc = sorted(dc.items(), key=lambda x: [x[1], x[-1]])[::-1][:10]
+# print(dc)
+
+# file = open(r"D:\informaticsclass\egeinfo\26\26_2653.txt")
+# n = int(file.readline())
+# file = sorted([int(line) for line in file])
+# dp = [0 for i in range(sum(file) + 1)]
+# dp[0] = 1
+
+# sm = 0
+# for idx in file:
+#     new_dp = dp.copy()
+#     for i in range(sm + 1):
+#         if dp[i] == 1:
+#             new_dp[i + idx] = 1
+#     dp = new_dp.copy()
+#     dp[idx] = 1
+#     sm += idx
+# print(dp.count(0), len(dp) - dp[::-1].index(0) - 1)
+
+# file = open(r"D:\informaticsclass\egeinfo\24\24_22446.txt").readline()
+# file = file.replace("LND", "*")
+# file = file.split("*")
+# mx = 0
+# for i in range(len(file) - 10_000):
+#     first = file[i] + "LND"
+#     last = "LND" + file[i + 10_000]
+#     mx = max(mx,
+#              len(first) - first.find("L") + 9999 * 3 + last.rfind("L") + sum(len(file[y]) for y in range(i + 1, i + 10_000)))
+#     mx = max(mx,
+#              len(first) - first.find("N") + 9999 * 3 + last.rfind("N") + sum(len(file[y]) for y in range(i + 1, i + 10_000)))
+#     mx = max(mx,
+#              len(first) - first.find("D") + 9999 * 3 + last.rfind("D") + sum(len(file[y]) for y in range(i + 1, i + 10_000)))
+# print(mx)
+
+# file = open(r"D:\informaticsclass\egeinfo\26\26 (2).txt")
+
+# n, k = map(int, file.readline().split())
+# workers = [[0] * 28800 for i in range(n)]
+# captchas = sorted([int(line) for line in file])
+
+# success = 0
+# last_worker = 0
+# for captcha in captchas:
+#     for idx, worker in enumerate(workers):
+#         if worker[captcha: captcha + 60] == [0] * 60:
+#             workers[idx][captcha: captcha + 60] = [1] * 60
+#             success += 1
+#             if idx == len(workers) - 1:
+#                 last_worker += 1
+#             break
+
+# print(success, last_worker)
+
+# file = open(r"D:\informaticsclass\egeinfo\24\24 (2).txt").readline()
+# file = file.split("A")
+
+# mx = 0
+# for i in range(len(file) - 3):
+#     window = file[i:i + 3]
+#     if window[0] == window[1] and window[0] == window[2]:
+#         mx = max(mx, sum(list(map(len, window))) + 4)
+# print(mx)
+
+
+# file = open(r"D:\informaticsclass\egeinfo\24\24_18530.txt").readline()
+# idxs = [i for i in range(len(file)) if file[i] in ["A", "E"]]
+# start = diff = mx = last = 0
+# for i in range(1, len(file)):
+#     if i - last != diff:
+#         mx = max(mx, i - start + 1)
+#         start = last + 1
+
+from itertools import product
+
+res = []
+for i in product("0123456", repeat=2):
+    res.append(i)
+res = set(res)
+print(len(res))
+print(res)
