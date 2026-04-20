@@ -401,11 +401,27 @@
 #         mx = max(mx, i - start + 1)
 #         start = last + 1
 
-from itertools import product
+# from itertools import product
 
+# res = []
+# for i in product("0123456", repeat=2):
+#     res.append(i)
+# res = set(res)
+# print(len(res))
+# print(res)
+
+file = open(r"D:\informaticsclass\egeinfo\24\24_28006.txt").readline()
+# file = "(((56+-+00(0678-89)(78-9)(322+7))"
+file = file.replace("(", "I").replace(")", "J")
+print(file)
+from re import *
+
+num1 = "(([1-9][0-9]*[02468])|([2468]))"
+num2 = "(([1-9][0-9]*[13579])|([13579]))"
+pattern = f"([I]({num1}[+-]{num2})[J])*"    
+pattern = f"(?=({pattern}))"
+mx = 0
 res = []
-for i in product("0123456", repeat=2):
-    res.append(i)
-res = set(res)
-print(len(res))
-print(res)
+for i in finditer(pattern, file):
+    mx = max(mx, len(i.group(1)))
+print(mx)
