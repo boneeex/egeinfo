@@ -410,18 +410,94 @@
 # print(len(res))
 # print(res)
 
-file = open(r"D:\informaticsclass\egeinfo\24\24_28006.txt").readline()
-# file = "(((56+-+00(0678-89)(78-9)(322+7))"
-file = file.replace("(", "I").replace(")", "J")
-print(file)
-from re import *
+# file = open(r"D:\informaticsclass\egeinfo\24\24_28006.txt").readline()
+# # file = "(((56+-+00(0678-89)(78-9)(322+7))"
+# file = file.replace("(", "I").replace(")", "J")
+# print(file)
+# from re import *
 
-num1 = "(([1-9][0-9]*[02468])|([2468]))"
-num2 = "(([1-9][0-9]*[13579])|([13579]))"
-pattern = f"([I]({num1}[+-]{num2})[J])*"    
-pattern = f"(?=({pattern}))"
-mx = 0
-res = []
-for i in finditer(pattern, file):
-    mx = max(mx, len(i.group(1)))
-print(mx)
+# num1 = "(([1-9][0-9]*[02468])|([2468]))"
+# num2 = "(([1-9][0-9]*[13579])|([13579]))"
+# pattern = f"([I]({num1}[+-]{num2})[J])*"    
+# pattern = f"(?=({pattern}))"
+# mx = 0
+# res = []
+# for i in finditer(pattern, file):
+#     mx = max(mx, len(i.group(1)))
+# print(mx)
+
+# mn = 10 ** 7
+# mx = 0
+# cnt_30 = 0
+# n = int(input())
+# for i in range(n):
+#     car = int(input())
+#     if car <= 30: cnt_30 += 1
+#     mn = min(mn, car)
+#     mx = max(mx, car)
+# print(mx - mn)
+# print(cnt_30)
+
+# from itertools import *
+
+# res = []
+# for var in permutations(range(1, 40), 5):
+#     res.append((var, sum(var)))
+# print(sorted(res, key=lambda x: -x[-1]))
+# l = "1234567"
+# print(l.rfind("3"))
+
+# def F(n):
+#     res = 1
+#     while n >= 10:
+#         res *= (n + 3) 
+#         n -=3
+#     return res 
+
+# print((F(247563)/519−477×F(247560))/F(247557))
+
+# from string import printable
+# alp = printable[:36]
+# def trans(n, base):
+#     if n == 0:
+#         return "0"
+#     s = ""
+#     while n > 0:
+#         s += alp[n % base]
+#         n //= base
+#     return s[::-1]
+# # 
+# exp = 5 * 1296**2021 - 4 * 216 ** 2022 + 3*36 ** 2023 - 2 * 6**2024 - 2025
+
+# cnt = 0
+# for i in trans(exp, 36):
+#     if alp.index(i) % 2 == 0:
+#         cnt += 1
+# print(cnt)
+
+# def perevod(n, system):
+#     s=[]
+#     while n>0:
+#         s.append(str(n%system))
+#         n=n//system
+
+#     return s[::-1]
+
+# number=5 * 1296**2021-4* 216 ** 2022+3*36 ** 2023-2*6**2024-2025
+# number=perevod(number, 36)
+
+# count =0
+# for i in number:
+#     if int(i) % 2==0:
+#         count+=1
+
+# print(count)
+
+from ipaddress import *
+
+net = ip_network("68.203.243.87/255.255.224.0", 0)
+for ip in net:
+    print(ip)
+
+# 68.203.255.254
+print(68 + 203 + 255 + 254)
