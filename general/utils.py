@@ -493,11 +493,53 @@
 
 # print(count)
 
-from ipaddress import *
+# from ipaddress import *
 
-net = ip_network("68.203.243.87/255.255.224.0", 0)
-for ip in net:
-    print(ip)
+# net = ip_network("68.203.243.87/255.255.224.0", 0)
+# for ip in net:
+#     print(ip)
 
-# 68.203.255.254
-print(68 + 203 + 255 + 254)
+# # 68.203.255.254
+# print(68 + 203 + 255 + 254)
+
+# file = open(r"D:\informaticsclass\egeinfo\26\26_17643.txt")
+
+# n = int(file.readline())
+# items = [list(map(int, i.split())) for i in file]
+# sr = sum(i[1] for i in items) / len(items)
+# expensive = [i for i in items if i[1] > sr]
+# dc = {}
+
+# for i in expensive:
+#     art, cost, status = i
+#     try:
+#         dc[art].append((cost, status))
+#     except:
+#         dc[art] = [(cost, status)]
+
+# res = []
+# for art, content in dc.items():
+#     res.append((
+#                 # sold
+#                 sum(1 for i in content if i[1] == 1),
+#                 # remaining
+#                 sum(1 for i in content if i[1] == 0),
+#                 # price
+#                 content[0][0]
+#                 ))
+
+
+# res = sorted(res, key=lambda x: [-x[0], -x[2], x[1]])
+# print(res[0])
+
+
+def f(n):
+    if n <= 1:
+        return n
+    elif n > 1 and n % 3 == 0:
+        return n + f(n // 3)
+    
+for i in range(1, 10**4, 3):
+    if f(3 ** i) > 100: 
+        print(3 ** i)
+        break

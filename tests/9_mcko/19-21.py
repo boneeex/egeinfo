@@ -14,18 +14,18 @@ def f(a, m):
         return any(h)
     return all(h)
 
-for s in range(1, 125 + 1):
-    if f(s, 1) == False and f(s, 2) == True:
-        print(s)
-        break
+# for s in range(1, 125 + 1):
+#     if f(s, 1) == False and f(s, 2) == True:
+#         print(s)
+#         break
 
-res = []
-for s in range(1, 125 + 1):
-    if f(s, 1) == False and f(s, 3) == True:
-        res.append(s)
-print(*res)
+# res = []
+# for s in range(1, 125 + 1):
+#     if f(s, 1) == False and f(s, 3) == True:
+#         res.append(s)
+# print(*res)
 
-for s in range(1, 125 + 1):
-    if f(s, 2) == False and f(s, 4) == True:
-        print(s)
-        break
+# for s in range(1, 125 + 1):
+#     if f(s, 2) == False and f(s, 4) == True:
+#         print(s)
+#         break
