@@ -533,13 +533,33 @@
 # print(res[0])
 
 
-def f(n):
-    if n <= 1:
-        return n
-    elif n > 1 and n % 3 == 0:
-        return n + f(n // 3)
+# def f(n):
+#     if n <= 1:
+#         return n
+#     elif n > 1 and n % 3 == 0:
+#         return n + f(n // 3)
     
-for i in range(1, 10**4, 3):
-    if f(3 ** i) > 100: 
-        print(3 ** i)
+# for i in range(1, 10**4, 3):
+#     if f(3 ** i) > 100: 
+#         print(3 ** i)
+#         break
+
+exp = 9 * 11 ** 210 + 8 * 11 ** 150 
+
+def trans(n, base):
+    cnt_0 = 0
+    if n == 0:
+        return "0"
+    s = ""
+    while n > 0:
+        if n % base == 0:
+            cnt_0 += 1
+        n //= base
+        if cnt_0 > 60:
+            return False
+    return cnt_0 == 60
+
+for x in range(3000, -1, -1):
+    if trans(exp - x, 11):
+        print(x)
         break
