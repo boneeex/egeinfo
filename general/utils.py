@@ -544,22 +544,69 @@
 #         print(3 ** i)
 #         break
 
-exp = 9 * 11 ** 210 + 8 * 11 ** 150 
+# exp = 9 * 11 ** 210 + 8 * 11 ** 150 
 
-def trans(n, base):
-    cnt_0 = 0
-    if n == 0:
-        return "0"
-    s = ""
-    while n > 0:
-        if n % base == 0:
-            cnt_0 += 1
-        n //= base
-        if cnt_0 > 60:
-            return False
-    return cnt_0 == 60
+# def trans(n, base):
+#     cnt_0 = 0
+#     if n == 0:
+#         return "0"
+#     s = ""
+#     while n > 0:
+#         if n % base == 0:
+#             cnt_0 += 1
+#         n //= base
+#         if cnt_0 > 60:
+#             return False
+#     return cnt_0 == 60
 
-for x in range(3000, -1, -1):
-    if trans(exp - x, 11):
-        print(x)
-        break
+# for x in range(3000, -1, -1):
+#     if trans(exp - x, 11):
+#         print(x)
+#         break
+
+# file = open(r"D:\informaticsclass\egeinfo\26\26_29234.txt")
+# k = int(file.readline())
+# n = int(file.readline())
+# appointments = sorted([[idx + 1] + list(map(int, line.split(" "))) for idx, line in enumerate(file.readlines())])
+# computers = [[0] * 1440 for i in range(k)]
+# profit_comp = {i: 0 for i in range(len(computers))}
+# accepted = 0
+
+# for appointment in appointments:
+#     i, start, stop = appointment
+#     time = stop - start
+#     for idx, computer in enumerate(computers):
+#         if computer[start:stop] == [0] * time:
+#             computers[idx][start:stop] = [0] * time
+#             profit_comp[idx] += time * (time + 1) // 2
+#             accepted += 1
+#             break
+# print(accepted, profit_comp.items())
+
+file = open(r"D:\informaticsclass\egeinfo\26\26_22605 (1).txt")
+n = int(file.readline())
+
+def find_gap(lst):
+    mn = 10 ** 7
+    for i in range(1, len(lst)):
+        mn = min(mn, lst[i] - lst[i - 1])
+        return mn
+    
+matrix = [[] * 10_000 for i in range(10_000)]
+print(matrix)
+fired = []
+for i in file:
+    x, y, t = map(int, i.split())
+    try:
+        matrix[x - 1][y - 1].append(t)
+    except:
+        print(x - 1, y - 1)
+        exit()
+    fired.append((x - 1, y - 1))
+
+res = []
+for cell in fired:
+    x, y = cell
+    a = find_gap(matrix[x][y])
+    if a: res.append((a, x + y + 2))
+print(min(res))
