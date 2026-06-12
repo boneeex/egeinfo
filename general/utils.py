@@ -884,7 +884,29 @@
 #         dot(5)
 # done()
 
-for A in range(1000, -1, -1):
-    if all((x * y > A) or (x > y) or (11 > x) for x in range(1000) for y in range(1000)):
-        print(A)
-        break
+# for A in range(1000, -1, -1):
+#     if all((x * y > A) or (x > y) or (11 > x) for x in range(1000) for y in range(1000)):
+#         print(A)
+#         break
+
+# 
+# p = {5,10,15,20,25,30}
+# q = {15,18,21,24,27,30}
+# print([i for i in p if i in q])
+
+# file = open(r"D:\informaticsclass\egeinfo\24\24_23206.txt").readline()
+# for i in "02468": file = file.replace(i, "*")
+# file = file.split("*")[1:]
+
+# mx = 0
+# for line in file:
+#     if line.count("S") < 35: continue
+#     s = 0
+#     for i in range(len(line)):
+#         if line[i] == "S":
+#             s += 1
+#         if s == 35:
+#             mx = max(mx, i + 2)
+#         elif s > 35:
+#             break
+# print(mx)
