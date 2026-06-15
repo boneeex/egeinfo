@@ -934,25 +934,35 @@
 
 # # print(res1, sorted(res2, key=lambda x: [-x[0], x[1]]))
 
-file = open(r"D:\informaticsclass\egeinfo\26\26_30401.txt")
-k, n = list(map(int, file.readline().split()))
-# id type volume timelaps
-cameras = sorted([[i+1] + list(map(int, file.readline().split())) + [[0] * 1440] for i in range(k)], key=lambda x: x[-2])
-# start stop volume type_needed 
-requests = sorted([list(map(int, file.readline().split())) for i in range(n)], key=lambda x: [x[0], x[1]])
-print(cameras)
+# file = open(r"D:\informaticsclass\egeinfo\26\26_30401.txt")
+# k, n = list(map(int, file.readline().split()))
+# # id type volume timelaps
+# cameras = sorted([[i+1] + list(map(int, file.readline().split())) + [[0] * 1440] for i in range(k)], key=lambda x: x[-2])
+# # start stop volume type_needed 
+# requests = sorted([list(map(int, file.readline().split())) for i in range(n)], key=lambda x: [x[0], x[1]])
+# print(cameras)
 
-res1 = 0
-res2 = []
-for req in requests:
-    start, stop, volume, type_n = req
-    duration = stop - start
-    for idx, cam in enumerate(cameras):
-        id, type_exist, vol_exist, laps = cam
-        if type_n == type_exist and volume <= vol_exist and laps[start:stop] == [0] * duration:
-            cameras[idx][-1][start:stop] = [1] * duration
-            res1 += 1
-            res2.append((start, id))
-            break
+# res1 = 0
+# res2 = []
+# for req in requests:
+#     start, stop, volume, type_n = req
+#     duration = stop - start
+#     for idx, cam in enumerate(cameras):
+#         id, type_exist, vol_exist, laps = cam
+#         if type_n == type_exist and volume <= vol_exist and laps[start:stop] == [0] * duration:
+#             cameras[idx][-1][start:stop] = [1] * duration
+#             res1 += 1
+#             res2.append((start, id))
+#             break
 
-print(res1, sorted(res2, key=lambda x: [-x[0], x[1]])[0][-1])
+# print(res1, sorted(res2, key=lambda x: [-x[0], x[1]])[0][-1])
+
+
+from math import *
+
+for x in range(100_000, 1, -1):
+    i = ceil(log2(4096))
+    num_pixel = 12 * x ** 2
+    if num_pixel * i <= 320 * 1024 * 8:
+        print(num_pixel)
+        break
