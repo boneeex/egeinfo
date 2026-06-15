@@ -958,11 +958,27 @@
 # print(res1, sorted(res2, key=lambda x: [-x[0], x[1]])[0][-1])
 
 
-from math import *
+# from math import *
 
-for x in range(100_000, 1, -1):
-    i = ceil(log2(4096))
-    num_pixel = 12 * x ** 2
-    if num_pixel * i <= 320 * 1024 * 8:
-        print(num_pixel)
-        break
+# for x in range(100_000, 1, -1):
+#     i = ceil(log2(4096))
+#     num_pixel = 12 * x ** 2
+#     if num_pixel * i <= 320 * 1024 * 8:
+#         print(num_pixel)
+#         break
+
+# a = [1,5234,634,662,2,4243,2]
+# print(a)
+# print(a[:])
+# fror
+
+file = open(r"D:\informaticsclass\egeinfo\26\1_26__8sm0w.txt")
+n = int(file.readline())
+boxes = sorted([int(line) for line in file], reverse=True)
+gift = [boxes.pop(0)]
+
+for i in boxes:
+    if gift[-1] - i >= 9:
+        boxes.append(i)
+
+print(len(boxes), gift[-1])
