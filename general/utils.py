@@ -972,13 +972,16 @@
 # print(a[:])
 # fror
 
-file = open(r"D:\informaticsclass\egeinfo\26\1_26__8sm0w.txt")
-n = int(file.readline())
-boxes = sorted([int(line) for line in file], reverse=True)
-gift = [boxes.pop(0)]
+# file = open(r"D:\informaticsclass\egeinfo\26\1_26__8sm0w.txt")
+# n = int(file.readline())
+# boxes = sorted([int(line) for line in file], reverse=True)
+# gift = [boxes.pop(0)]
 
-for i in boxes:
-    if gift[-1] - i >= 9:
-        boxes.append(i)
+# for i in boxes:
+#     if gift[-1] - i >= 9:
+#         boxes.append(i)
 
-print(len(boxes), gift[-1])
+# print(len(boxes), gift[-1])
+
+a = "asoudighasogha"
+print(a.find("a", a.find("a") + 1))
