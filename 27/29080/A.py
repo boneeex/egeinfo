@@ -8,6 +8,7 @@ def centroid(cluster):
         for star2 in cluster:
             x1, y1 = star1[0], star1[1]
             x2, y2 = star2[0], star2[1]
+            # from math import dist
             cur_dist += dist([x1, y1], [x2, y2])
         if cur_dist <= min_dist:
             min_dist = cur_dist
@@ -18,6 +19,10 @@ file = open(r"D:\informaticsclass\egeinfo\27\29080\27_A_29080.txt")
 cluster1 = []
 cluster2 = []
 for star in file:
+    # последний элемент списка star - дополнительная информация
+    # первый элемент (1 символ, заглавная латинская буква) - цвет
+    # второй элемент (1 символ, цифра) - спектральный класс (температра от 0 до 9)
+    # третий элемент (1-3 символов, заглавные латинские буквы) - размер (указан как римские цифры)
     star = [float(star.replace(",", ".").split()[0])] + [float(star.replace(",", ".").split()[1])] + [star.split()[2]]
     if star[1] < 8: cluster1.append(star)
     else: cluster2.append(star)
